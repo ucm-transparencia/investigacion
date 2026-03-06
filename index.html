@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Área de Investigación — Portal de Transparencia UCM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+/* ─── TOKENS ─────────────────────────────────────────────── */
+:root {
+  --ucm:    #b71234;
+  --ucm-d:  #8b0d27;
+  --ucm-l:  #f5e6ea;
+  --ucm-ll: #fdf4f6;
+  --gris:   #1c1c2e;
+  --gris-m: #5a6478;
+  --gris-c: #f0f3f7;
+  --gris-b: #e4e9f0;
+  --blanco: #ffffff;
+  --verde:  #166534;
+  --verde-l:#dcfce7;
+  --fn:     'DM Sans', system-ui, sans-serif;
+  --fd:     'DM Serif Display', Georgia, serif;
+  --fm:     'Source Code Pro', monospace;
+  --dur:    .32s;
+  --ease:   cubic-bezier(.4,0,.2,1);
+  --sh-s:   0 1px 4px rgba(0,0,0,.06);
+  --sh-m:   0 4px 20px rgba(0,0,0,.08);
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box }
+html { scroll-behavior:smooth; font-size:15px }
+body {
+  font-family: var(--fn);
+  background: var(--gris-c);
+  color: var(--gris);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+a { color:inherit; text-decoration:none }
+
+/* ─── HERO ───────────────────────────────────────────────── */
+.hero {
+  background: linear-gradient(135deg, #c41e3a 0%, #e8365d 100%);
+  color: var(--blanco);
+  padding: 18px 32px;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content:'';
+  position:absolute; inset:0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events:none;
+}
+.hero-inner {
+  position:relative;
+  max-width:1100px;
+  margin:0 auto;
+  display:flex;
+  align-items:flex-start;
+  gap:18px;
+}
+.hero-icon {
+  width:52px; height:52px;
+  background:rgba(255,255,255,.15);
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.25);
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0;
+  margin-top:2px;
+}
+.hero-text h1 {
+  font-family:var(--fn);
+  font-size:1.4rem;
+  font-weight:600;
+  line-height:1.2;
+  margin-bottom:4px;
+}
+.hero-text p {
+  font-size:.85rem;
+  color:rgba(255,255,255,.88);
+  max-width:480px;
+  line-height:1.5;
+}
+
+/* ─── LAYOUT ─────────────────────────────────────────────── */
+.layout {
+  max-width:1100px;
+  margin:0 auto;
+  padding:28px 20px 60px;
+  display:grid;
+  grid-template-columns:220px 1fr;
+  gap:28px;
+  align-items:start;
+}
+@media (max-width:780px) {
+  .layout { grid-template-columns:1fr; padding:16px 14px 40px }
+  .sidebar { display:none }
+}
+
+/* ─── SIDEBAR ────────────────────────────────────────────── */
+.sidebar {
+  position:sticky;
+  top:16px;
+  background:var(--blanco);
+  border-radius:12px;
+  border:1px solid var(--gris-b);
+  overflow:hidden;
+  box-shadow:var(--sh-s);
+}
+.sidebar-hdr {
+  background:linear-gradient(135deg,#d42b4f 0%,#e8365d 100%);
+  color:var(--blanco);
+  padding:12px 16px;
+  font-size:.7rem;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+}
+.nav-list { list-style:none; padding:8px 0 }
+.nav-item a {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 16px;
+  font-size:.82rem;
+  font-weight:500;
+  color:var(--gris-m);
+  transition:all var(--dur) var(--ease);
+  border-left:3px solid transparent;
+}
+.nav-item a:hover,
+.nav-item a.active {
+  color:var(--ucm);
+  background:var(--ucm-ll);
+  border-left-color:var(--ucm);
+}
+.nav-item a .nav-num {
+  font-family:var(--fm);
+  font-size:.68rem;
+  background:var(--gris-c);
+  color:var(--gris-m);
+  padding:1px 5px;
+  border-radius:4px;
+  min-width:20px;
+  text-align:center;
+  flex-shrink:0;
+  transition:all var(--dur) var(--ease);
+}
+.nav-item a:hover .nav-num,
+.nav-item a.active .nav-num {
+  background:var(--ucm-l);
+  color:var(--ucm);
+}
+.nav-item.sub a { padding-left:28px; font-size:.78rem }
+.nav-divider { height:1px; background:var(--gris-b); margin:4px 0 }
+.nav-item.verde a:hover,
+.nav-item.verde a.active {
+  color:var(--verde);
+  background:var(--verde-l);
+  border-left-color:var(--verde);
+}
+
+/* ─── MAIN ───────────────────────────────────────────────── */
+.content { display:flex; flex-direction:column; gap:20px }
+
+/* ─── SECTION ────────────────────────────────────────────── */
+.section {
+  background:var(--blanco);
+  border-radius:14px;
+  border:1px solid var(--gris-b);
+  overflow:hidden;
+  box-shadow:var(--sh-s);
+  transition:box-shadow var(--dur) var(--ease);
+  opacity:0;
+  animation:fadeUp .45s var(--ease) forwards;
+}
+.section:hover { box-shadow:var(--sh-m) }
+.section:nth-child(1){animation-delay:.05s}
+.section:nth-child(2){animation-delay:.10s}
+.section:nth-child(3){animation-delay:.15s}
+.section:nth-child(4){animation-delay:.20s}
+.section:nth-child(5){animation-delay:.25s}
+.section:nth-child(6){animation-delay:.30s}
+.section:nth-child(7){animation-delay:.35s}
+.section:nth-child(8){animation-delay:.40s}
+.section:nth-child(9){animation-delay:.45s}
+
+.section-hdr {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:16px 20px;
+  cursor:pointer;
+  user-select:none;
+  border-bottom:1px solid transparent;
+  transition:all var(--dur) var(--ease);
+  background:var(--blanco);
+}
+.section-hdr:hover { background:var(--ucm-ll) }
+.section.open .section-hdr {
+  border-bottom-color:var(--gris-b);
+  background:var(--ucm-ll);
+}
+.section-hdr-icon {
+  width:34px; height:34px;
+  background:var(--ucm-l);
+  color:var(--ucm);
+  border-radius:8px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:16px;
+  flex-shrink:0;
+  transition:all var(--dur) var(--ease);
+}
+.section.open .section-hdr-icon {
+  background:var(--ucm);
+  color:var(--blanco);
+}
+.section-hdr-text { flex:1 }
+.section-hdr-text h2 {
+  font-family:var(--fd);
+  font-size:1rem;
+  font-weight:600;
+  color:var(--gris);
+  line-height:1.2;
+}
+.section-hdr-text span {
+  font-size:.75rem;
+  color:var(--gris-m);
+  margin-top:1px;
+  display:block;
+}
+.section-chevron {
+  width:28px; height:28px;
+  display:flex; align-items:center; justify-content:center;
+  color:var(--gris-m);
+  transition:transform var(--dur) var(--ease);
+  flex-shrink:0;
+}
+.section.open .section-chevron { transform:rotate(180deg) }
+
+/* ─── BODY ───────────────────────────────────────────────── */
+.section-body {
+  display:grid;
+  grid-template-rows:0fr;
+  transition:grid-template-rows .35s var(--ease);
+}
+.section.open .section-body { grid-template-rows:1fr }
+.section-body-inner { overflow:hidden }
+
+/* ─── CARDS ──────────────────────────────────────────────── */
+.cards-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+  gap:12px;
+  padding:16px 20px 20px;
+}
+.cards-grid.cols-2 { grid-template-columns:repeat(auto-fill,minmax(280px,1fr)) }
+.cards-grid.cols-3 { grid-template-columns:repeat(auto-fill,minmax(220px,1fr)) }
+
+.card {
+  background:var(--gris-c);
+  border:1px solid var(--gris-b);
+  border-radius:10px;
+  padding:14px 16px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  transition:all var(--dur) var(--ease);
+  position:relative;
+  overflow:hidden;
+}
+.card::before {
+  content:'';
+  position:absolute;
+  left:0; top:0; bottom:0;
+  width:3px;
+  background:var(--ucm);
+  border-radius:0 2px 2px 0;
+  transform:scaleY(0);
+  transition:transform var(--dur) var(--ease);
+  transform-origin:bottom;
+}
+.card:hover {
+  background:var(--blanco);
+  border-color:var(--ucm-l);
+  box-shadow:var(--sh-m);
+  transform:translateY(-1px);
+}
+.card:hover::before { transform:scaleY(1) }
+.card.verde::before { background:var(--verde) }
+.card.verde:hover { border-color:var(--verde-l) }
+
+.card-title { font-size:.85rem; font-weight:600; color:var(--gris); line-height:1.35 }
+.card-desc  { font-size:.77rem; color:var(--gris-m); line-height:1.5; flex:1 }
+.card-actions { display:flex; gap:6px; flex-wrap:wrap; margin-top:2px }
+
+.card-wide {
+  flex-direction:row;
+  align-items:center;
+  gap:16px;
+}
+.card-wide .card-icon {
+  width:42px; height:42px;
+  background:var(--ucm-l);
+  border-radius:10px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:20px;
+  flex-shrink:0;
+}
+.card-wide .card-body { flex:1 }
+
+/* ─── BTNS ───────────────────────────────────────────────── */
+.btn {
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  padding:5px 12px;
+  border-radius:6px;
+  font-size:.73rem;
+  font-weight:700;
+  font-family:var(--fn);
+  text-transform:uppercase;
+  letter-spacing:.04em;
+  cursor:pointer;
+  transition:all var(--dur) var(--ease);
+  border:none;
+  white-space:nowrap;
+}
+.btn-rojo  { background:var(--ucm); color:var(--blanco) }
+.btn-rojo:hover  { background:var(--ucm-d); transform:translateY(-1px); box-shadow:0 3px 10px rgba(183,18,52,.3) }
+.btn-verde { background:var(--verde); color:var(--blanco) }
+.btn-verde:hover { background:#14532d; transform:translateY(-1px); box-shadow:0 3px 10px rgba(22,101,52,.3) }
+.btn-ghost {
+  background:transparent;
+  color:var(--ucm);
+  border:1.5px solid var(--ucm-l);
+}
+.btn-ghost:hover { background:var(--ucm-l); border-color:var(--ucm) }
+
+/* ─── STAT GRID (doctorado) ──────────────────────────────── */
+.stat-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+  gap:10px;
+  padding:16px 20px 4px;
+}
+.stat-card {
+  background:var(--gris-c);
+  border:1px solid var(--gris-b);
+  border-radius:10px;
+  padding:12px 14px;
+  font-size:.82rem;
+  color:var(--gris);
+  transition:all var(--dur) var(--ease);
+}
+.stat-card:hover { background:var(--blanco); border-color:var(--ucm-l); box-shadow:var(--sh-s) }
+.stat-num {
+  font-size:1.4rem;
+  font-weight:700;
+  color:var(--ucm);
+  line-height:1;
+  margin-bottom:4px;
+}
+.stat-label { font-size:.75rem; color:var(--gris-m); line-height:1.4 }
+
+/* ─── BUSCADOR TESIS ─────────────────────────────────────── */
+.search-wrap {
+  padding:0 20px 20px;
+}
+.search-box {
+  background:var(--gris-c);
+  border:1px solid var(--gris-b);
+  border-radius:10px;
+  padding:16px;
+  margin-bottom:12px;
+}
+.search-box h3 {
+  font-size:.78rem;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  color:var(--ucm);
+  margin-bottom:12px;
+  padding-bottom:8px;
+  border-bottom:1px solid var(--ucm-l);
+}
+.search-row { display:flex; flex-wrap:wrap; gap:8px; align-items:center }
+.search-row input,
+.search-row select {
+  padding:7px 11px;
+  border:1px solid var(--gris-b);
+  border-radius:6px;
+  font-size:.82rem;
+  font-family:var(--fn);
+  flex:1 1 150px;
+  min-width:130px;
+  background:var(--blanco);
+  color:var(--gris);
+  transition:border-color var(--dur);
+}
+.search-row input:focus,
+.search-row select:focus { outline:none; border-color:var(--ucm); box-shadow:0 0 0 3px var(--ucm-l) }
+
+.tesis-meta { font-size:.75rem; color:var(--gris-m); margin-bottom:8px }
+.tesis-meta span { font-weight:700; color:var(--ucm) }
+
+.table-wrap { overflow-x:auto }
+.tesis-table {
+  width:100%; border-collapse:collapse;
+  font-size:.8rem; background:var(--blanco);
+  border-radius:8px; overflow:hidden;
+  border:1px solid var(--gris-b);
+}
+.tesis-table thead th {
+  background:var(--ucm); color:var(--blanco);
+  padding:9px 12px; text-align:left;
+  font-size:.73rem; white-space:nowrap;
+  font-weight:600;
+}
+.tesis-table thead th.sortable { cursor:pointer; user-select:none }
+.tesis-table thead th.sortable:hover { background:var(--ucm-d) }
+.tesis-table tbody tr { border-bottom:1px solid var(--gris-b); transition:background var(--dur) }
+.tesis-table tbody tr:last-child { border-bottom:none }
+.tesis-table tbody tr:hover { background:var(--ucm-ll) }
+.tesis-table tbody td { padding:9px 12px; vertical-align:top }
+
+.badge {
+  display:inline-block; padding:2px 8px; border-radius:20px;
+  font-size:.68rem; font-weight:700; white-space:nowrap;
+}
+.b-intl     { background:#dcfce7; color:#166534 }
+.b-ind      { background:#dbeafe; color:#1e40af }
+.b-cotutela { background:#fef9c3; color:#854d0e }
+.b-normal   { background:var(--gris-c); color:var(--gris-m) }
+
+.no-results {
+  text-align:center; padding:24px; color:var(--gris-m);
+  font-style:italic; font-size:.85rem;
+  background:var(--gris-c); border-radius:8px;
+  border:1px dashed var(--gris-b);
+}
+
+.quick-links { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px }
+
+/* ─── INFO RELACIONADA ───────────────────────────────────── */
+.info-rel {
+  margin:0 20px 20px;
+  background:var(--verde-l);
+  border:1px solid #bbf7d0;
+  border-radius:10px;
+  padding:14px 16px;
+}
+.info-rel-title {
+  font-size:.75rem; font-weight:700;
+  text-transform:uppercase; letter-spacing:.08em;
+  color:var(--verde); margin-bottom:10px;
+}
+.info-rel-grid { display:flex; flex-wrap:wrap; gap:10px }
+.info-rel-grid .card { flex:1; min-width:200px }
+
+/* ─── UNIVERSIDATA ───────────────────────────────────────── */
+.universidata {
+  background:linear-gradient(135deg,#e0f0ff 0%,#dbeafe 100%);
+  border:1px solid #bfdbfe;
+  border-radius:12px;
+  padding:18px 20px;
+  display:flex; align-items:center; gap:16px;
+  margin:0 20px 20px;
+}
+.universidata-icon { font-size:28px; flex-shrink:0 }
+.universidata p { font-size:.85rem; color:#1e40af; line-height:1.5; flex:1 }
+
+/* ─── FOOTER ─────────────────────────────────────────────── */
+.footer {
+  background:var(--blanco);
+  border-top:1px solid var(--gris-b);
+  padding:18px 40px;
+  font-size:.77rem; color:var(--gris-m);
+  display:flex; flex-direction:column; gap:6px;
+  align-items:center; text-align:center; line-height:1.6;
+}
+.footer a { color:var(--ucm-d); text-decoration:underline; text-decoration-color:rgba(183,18,52,.25); transition:text-decoration-color var(--dur) }
+.footer a:hover { text-decoration-color:var(--ucm) }
+
+/* ─── BACK TO TOP ────────────────────────────────────────── */
+#backTop {
+  position:fixed; bottom:24px; right:24px;
+  background:var(--ucm); color:var(--blanco);
+  border:none; width:40px; height:40px;
+  border-radius:50%; cursor:pointer; font-size:18px;
+  box-shadow:0 4px 16px rgba(183,18,52,.35);
+  display:flex; align-items:center; justify-content:center;
+  transition:all var(--dur) var(--ease);
+  opacity:0; pointer-events:none; z-index:100;
+}
+#backTop.visible { opacity:1; pointer-events:auto }
+#backTop:hover { background:var(--ucm-d); transform:translateY(-2px) }
+
+/* ─── ANIMATIONS ─────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(16px) }
+  to   { opacity:1; transform:translateY(0) }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero" id="inicio">
+  <div class="hero-inner">
+    <div class="hero-icon">
+      <!-- Microscopio SVG -->
+      <svg width="28" height="28" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="18" y="3" width="10" height="5" rx="1.5" fill="white"/>
+        <rect x="19.5" y="8" width="7" height="15" rx="1" fill="white"/>
+        <rect x="15" y="21" width="16" height="3.5" rx="1.5" fill="white"/>
+        <rect x="21" y="24.5" width="4" height="5.5" rx="1" fill="white"/>
+        <circle cx="23" cy="34" r="7" stroke="white" stroke-width="2.5" fill="none"/>
+        <line x1="23" y1="41" x2="23" y2="45" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="13" y1="45" x2="33" y2="45" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="hero-text">
+      <h1>Área de Investigación</h1>
+      <p>Actividad investigadora de la UCM. Grupos, proyectos, doctorado y transferencia del conocimiento.</p>
+    </div>
+  </div>
+</header>
+
+<!-- LAYOUT -->
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar" aria-label="Navegación de investigación">
+    <div class="sidebar-hdr">Índice de contenidos</div>
+    <ul class="nav-list">
+      <li class="nav-item"><a href="#publicaciones"><span class="nav-num">1</span> Memorias de investigación</a></li>
+      <li class="nav-item"><a href="#comisiones"><span class="nav-num">2</span> Comisiones y Comités</a></li>
+      <li class="nav-item sub"><a href="#comision-inv">a. Comisión de Investigación</a></li>
+      <li class="nav-item sub"><a href="#cei">b. Comité de Ética (CEI)</a></li>
+      <li class="nav-item sub"><a href="#cb">c. Comité de Bioseguridad</a></li>
+      <li class="nav-item sub"><a href="#cea">d. Comité Exp. Animal (CEA)</a></li>
+      <li class="nav-item sub"><a href="#ceea">e. Comité Ética Exp. Animal</a></li>
+      <li class="nav-item"><a href="#portal"><span class="nav-num">3</span> Portal de Producción Científica</a></li>
+      <li class="nav-item"><a href="#biblioteca"><span class="nav-num">4</span> Biblioteca Complutense</a></li>
+      <li class="nav-item"><a href="#sexenios"><span class="nav-num">5</span> Sexenios</a></li>
+      <li class="nav-item"><a href="#transferencia"><span class="nav-num">6</span> Transferencia del Conocimiento</a></li>
+      <li class="nav-item"><a href="#proyectos"><span class="nav-num">7</span> Proyectos de Investigación</a></li>
+      <li class="nav-item"><a href="#doctorado"><span class="nav-num">8</span> Escuela de Doctorado</a></li>
+      <li class="nav-divider"></li>
+      <li class="nav-item verde"><a href="#divulgacion"><span class="nav-num">9</span> Divulgación científica</a></li>
+      <li class="nav-item verde"><a href="#personal"><span class="nav-num">10</span> Personal Investigador</a></li>
+    </ul>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="content">
+
+    <!-- 1. MEMORIAS -->
+    <div class="section open" id="publicaciones">
+      <div class="section-hdr" onclick="toggle(this)" aria-expanded="true">
+        <div class="section-hdr-icon">📄</div>
+        <div class="section-hdr-text">
+          <h2>Memorias de investigación</h2>
+          <span>Informes anuales de actividad investigadora de la UCM</span>
+        </div>
+        <div class="section-chevron">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="section-body">
+        <div class="section-body-inner">
+          <div style="padding:16px 20px 20px">
+            <div class="card card-wide">
+              <div class="card-icon">📋</div>
+              <div class="card-body">
+                <div class="card-title">Memorias de investigación UCM</div>
+                <div class="card-desc">Consulta las memorias anuales de investigación de la Universidad Complutense de Madrid.</div>
+              </div>
+              <div class="card-actions">
+                <a href="https://www.ucm.es/memorias-de-investigacion-ucm" class="btn btn-rojo" target="_blank" rel="noopener">Ver →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. COMISIONES Y COMITÉS -->
+    <div class="section" id="comisiones">
+      <div class="section-hdr" onclick="toggle(this)" aria-expanded="false">
+        <div class="section-hdr-icon">🏛️</div>
+        <div class="section-hdr-text">
+          <h2>Comisiones y Comités</h2>
+          <span>Comisión de Investigación, Comités de Ética, Bioseguridad y Experimentación Animal</span>
+        </div>
+        <div class="section-chevron">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="section-body">
+        <div class="section-body-inner">
+          <div class="cards-grid cols-3">
+            <div class="card" id="comision-inv">
+              <div class="card-title">Comisión de Investigación</div>
+              <div class="card-desc">Órgano de coordinación y asesoramiento en materia de investigación de la UCM.</div>
+              <div class="card-actions">
+                <a href="https://www.ucm.es/comision-de-investigacion" class="btn btn-rojo" target="_blank" rel="noopener">Ver →</a>
+              </div>
+            </div>
+            <div class="card" id="cei">
+              <div class="card-title">Comité de Ética en la Investigación (CEI)</div>
+              <div class="card-desc">Vela por el cumplimiento de los principios éticos en la investigación de la UCM.</div>
+              <div class="card-actions">
+                <a href="https://www.ucm.es/comite-etica-de-la-investigacion" class="btn btn-rojo" target="_blank" rel="noopener">Ver →</a>
+              </div>
+            </div>
+            <div class="card" id="cb">
+              <div class="card-title">Comité de Bioseguridad (CB)</div>
+              <div class="card-desc">Supervisa las actividades con organismos modificados genéticamente y agentes biológicos.</div>
+              <div class="card-actions">
+                <a href="https://www.ucm.es/comite-de-bioseguridad" class="btn btn-rojo" target="_blank" rel="noopener">Ver →</a>
+              </div>
+            </div>
+            <div class="card" id="cea">
+              <div class="card-title">Comité de Experimentación Animal (CEA)</div>
+              <div class="card-desc">Supervisa los procedimientos experimentales con animales en la UCM.</div>
+              <div class="card-actions">
+                <a href="https://www.ucm.es/cea" class="btn btn-rojo" target="_blank" rel="noopener">Ver →</a>
+              </div>
+            </div>
+            <div class="card" id="ceea">
+              <div class="card-title">Comité de Ética de Experimentación Animal (CEEA-UCM)</div>
+              <div class="card-desc">Evalúa y aprueba proyectos de investigación que implican el uso de animales.</div>
+              <div class="card-actions">
+                <a href="https://www.ucm.es/comite-de-etica-de-experimentacion-animal-de" class="btn btn-rojo" target="_blank" rel="noopener">Ver →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. PORTAL CIENTÍFICO -->
+    <div class="section" id="portal">
+      <div class="section-hdr" onclick="toggle(this)" aria-expanded="false">
+        <div class="section-hdr-icon">🔬</div>
+        <div class="section-hdr-text">
+          <h2>Portal de Producción Científica</h2>
+          <span>Grupos, proyectos, publicaciones y tesis doctorales de la UCM</span>
+        </div>
+        <div class="section-chevron">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="section-body">
+        <div class="section-body-inner">
+          <div style="padding:16px 20px 20px">
+            <div class="card card-wide">
+              <div class="card-icon">🔭</div>
+              <div class="card-body">
+                <div class="card-title">Portal de Producción Científica UCM</div>
+                <div class="card-desc">Consulta grupos de investigación, proyectos activos, publicaciones y tesis doctorales.</div>
+              </div>
+              <div class="card-actions">
+                <a href="https://produccioncientifica.ucm.es/" class="btn btn-rojo" target="_blank" rel="noopener">Acceder ↗</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. BIBLIOTECA -->
+    <div class="section" id="biblioteca">
+      <div class="section-hdr" onclick="toggle(this)" aria-expanded="false">
+        <div class="section-hdr-icon">📚</div>
+        <div class="section-hdr-text">
+          <h2>Biblioteca Complutense</h2>
+          <span>Acceso abierto, repositorio institucional y acuerdos transformativos</span>
+        </div>
+        <div class="section-chevron">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="section-body">
+        <div class="section-body-inner">
+          <div class="cards-grid cols-2">
+            <div class="card">
+              <div class="card-title">Biblioteca Transparente UCM</div>
+              <div class="card-desc">Información sobre la biblioteca en el marco de la transparencia institucional.</div>
+              <div class="card-actions">
+                <a href="https://biblioguias.ucm.es/biblioteca-transparente" class="btn btn-rojo" target="_blank" rel="noopener">Ver →</a>
+              </div>
+            </div>
+            <div class="card verde">
+              <div class="card-title">Docta Complutense</div>
+              <div class="card-desc">Repositorio institucional en acceso abierto de la UCM.</div>
+              <div class="card-actions">
+                <a href="https://docta.ucm.es/home" class="btn btn-verde" target="_blank" rel="noopener">Ver →</a>
+              </div>
+            </div>
+            <div class="card verde">
+              <div class="card-title">Acuerdos transformativos</div>
+              <div class="card-desc">Convenios de acceso abierto para publicación de artículos (APC).</div>
+              <div class="card-actions">
+                <a href="https://biblioguias.ucm.es/publicar-en-acceso-abierto/acuerdos-transformativos" class="btn btn-verde" target="_blank" rel="noopener">Ver →</a>
+              </div>
+            </div>
+            <div class="card verde">
+              <div class="card-title">DART-Europe</div>
+              <div class="card-desc">La UCM, primera universidad española en tesis en acceso abierto en DART-Europe.</div>
+              <div class="card-actions">
+                <a href="https://www.dart-europe.org/basic-search.php" class="btn btn-verde" target="_blank" rel="noopener">Ver ↗</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. SEXENIOS -->
+    <div class="section" id="sexenios">
+      <div class="section-hdr" onclick="toggle(this)" aria-expanded="false">
+        <div class="section-hdr-icon">📈</div>
+        <div class="section-hdr-text">
+          <h2>Sexenios de Investigación y Transferencia</h2>
+          <span>Datos sobre los sexenios del profesorado de la UCM</span>
+        </div>
+        <div class="section-chevron">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="section-body">
+        <div class="section-body-inner">
+          <div style="padding:16px 20px 20px">
+            <div class="card card-wide">
+              <div class="card-icon">📊</div>
+              <div class="card-body">
+                <div class="card-title">Sexenios de Investigación y Transferencia</div>
+                <div class="card-desc">Consulta los datos sobre sexenios de investigación y transferencia del PDI de la UCM.</div>
+              </div>
+              <div class="card-actions">
+                <a href="https://www.ucm.es/portaldetransparencia/sexenios-investigacion" class="btn btn-rojo" target="_blank" rel="noopener">Ver →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. TRANSFERENCIA -->
+    <div class="section" id="transferencia">
+      <div class="section-hdr" onclick="toggle(this)" aria-expanded="false">
+        <div class="section-hdr-icon">🔄</div>
+        <div class="section-hdr-text">
+          <h2>Oficina de Transferencia del Conocimiento</h2>
+          <span>De la teoría a la práctica. OTRI y HRS4R</span>
+        </div>
+        <div class="section-chevron">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="section-body">
+        <div class="section-body-inner">
+          <div class="cards-grid cols-2">
+            <div class="card">
+              <div class="card-title">Oficina de Transferencia del Conocimiento</div>
+              <div class="card-desc">Información sobre la actividad de transferencia del conocimiento de la UCM.</div>
+              <div class="card-actions">
+                <a href="https://www.ucm.es/portaldetransparencia/transferencia-conocimiento" class="btn btn-rojo" target="_blank" rel="noopener">Ver →</a>
+              </div>
+            </div>
+            <div class="card verde">
+              <div class="card-title">HRS4R — Excelencia en Investigación</div>
+              <div class="card-desc">Sello europeo de calidad para la gestión de recursos humanos en investigación.</div>
+              <div class="card-actions">
+                <a href="https://www.ucm.es/hrs4r" class="btn btn-verde" target="_blank" rel="noopener">Ver →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. PROYECTOS -->
+    <div class="section" id="proyectos">
+      <div class="section-hdr" onclick="toggle(this)" aria-expanded="false">
+        <div class="section-hdr-icon">🧪</div>
+        <div class="section-hdr-text">
+          <h2>Proyectos de Investigación</h2>
+          <span>Proyectos activos, grupos de investigación, institutos y Parque Científico</span>
+        </div>
+        <div class="section-chevron">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="section-body">
+        <div class="section-body-inner">
+          <div class="cards-grid cols-2">
+            <div class="card">
+              <div class="card-title">Proyectos de Investigación UCM</div>
+              <div class="card-desc">Consulta los proyectos de investigación activos y finalizados de la UCM.</div>
+              <div class="card-actions">
+                <a href="https://www.ucm.es/portaldetransparencia/proyectos-investigacion" class="btn btn-rojo" target="_blank" rel="noopener">Ver →</a>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-title">Grupos y Líneas de Investigación</div>
+              <div class="card-desc">Consulta los grupos de investigación activos en la UCM.</div>
+              <div class="card-actions">
+                <a href="https://www.ucm.es/grupos" class="btn btn-rojo" target="_blank" rel="noopener">Ver →</a>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-title">Institutos Universitarios de Investigación</div>
+              <div class="card-desc">Listado de los institutos universitarios de la UCM.</div>
+              <div class="card-actions">
+                <a href="https://www.ucm.es/institutos-universitarios" class="btn btn-rojo" target="_blank" rel="noopener">Ver →</a>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-title">Parque Científico de Madrid UCM-UAM</div>
+              <div class="card-desc">Espacio de I+D compartido entre la UCM y la UAM.</div>
+              <div class="card-actions">
+                <a href="https://fpcm.es/" class="btn btn-rojo" target="_blank" rel="noopener">Acceder ↗</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. DOCTORADO -->
+    <div class="section" id="doctorado">
+      <div class="section-hdr" onclick="toggle(this)" aria-expanded="false">
+        <div class="section-hdr-icon">🎓</div>
+        <div class="section-hdr-text">
+          <h2>Actividades Escuela de Doctorado</h2>
+          <span>Cifras, tesis defendidas y buscador — Año 2024</span>
+        </div>
+        <div class="section-chevron">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="section-body">
+        <div class="section-body-inner">
+
+          <!-- Stats -->
+          <div class="stat-grid">
+            <div class="stat-card"><div class="stat-num">813</div><div class="stat-label">Tesis defendidas</div></div>
+            <div class="stat-card"><div class="stat-num">213</div><div class="stat-label">Mención internacional</div></div>
+            <div class="stat-card"><div class="stat-num">12</div><div class="stat-label">Doctorado industrial</div></div>
+            <div class="stat-card"><div class="stat-num">11</div><div class="stat-label">Co-tutela internacional</div></div>
+            <div class="stat-card"><div class="stat-num">33</div><div class="stat-label">Convenios co-tutela autorizados</div></div>
+            <div class="stat-card"><div class="stat-num">62</div><div class="stat-label">Actividades formativas transversales</div></div>
+            <div class="stat-card"><div class="stat-num">54</div><div class="stat-label">Declaraciones equivalencia título doctor</div></div>
+            <div class="stat-card"><div class="stat-num">57</div><div class="stat-label">Programas de Doctorado</div></div>
+            <div class="stat-card"><div class="stat-num">6.253</div><div class="stat-label">Estudiantes matriculados 2023-2024</div></div>
+          </div>
+
+          <!-- Buscador tesis -->
+          <div class="search-wrap">
+            <div class="search-box">
+              <h3>🔍 Buscador de tesis</h3>
+              <div class="search-row">
+                <input type="text" id="s-texto" placeholder="Título, autor/a…">
+                <select id="s-tipo">
+                  <option value="">Todos los tipos</option>
+                  <option value="internacional">Mención internacional</option>
+                  <option value="industrial">Doctorado industrial</option>
+                  <option value="cotutela">Co-tutela internacional</option>
+                  <option value="normal">Sin mención especial</option>
+                </select>
+                <select id="s-area">
+                  <option value="">Todas las áreas</option>
+                  <option value="Ciencias">Ciencias</option>
+                  <option value="Ciencias de la Salud">Ciencias de la Salud</option>
+                  <option value="Ciencias Sociales">Ciencias Sociales</option>
+                  <option value="Humanidades">Humanidades</option>
+                  <option value="Ingeniería">Ingeniería y Arquitectura</option>
+                </select>
+                <button class="btn btn-rojo" onclick="filtrar()">Buscar</button>
+                <button class="btn btn-ghost" onclick="resetear()">Limpiar</button>
+              </div>
+            </div>
+
+            <div class="tesis-meta">Mostrando <span id="n-count">20</span> tesis</div>
+            <div class="table-wrap">
+              <table class="tesis-table">
+                <thead>
+                  <tr>
+                    <th class="sortable" onclick="sortBy(0)">Título ⇅</th>
+                    <th class="sortable" onclick="sortBy(1)">Autor/a ⇅</th>
+                    <th class="sortable" onclick="sortBy(2)">Área ⇅</th>
+                    <th>Tipo</th>
+                    <th class="sortable" onclick="sortBy(4)">Año ⇅</th>
+                  </tr>
+                </thead>
+                <tbody id="tesis-body"></tbody>
+              </table>
+              <div class="no-results" id="no-res" style="display:none">No se encontraron tesis con esos criterios.</div>
+            </div>
+
+            <div class="quick-links">
+              <a href="https://produccioncientifica.ucm.es/resultados/tesis/unidades" class="btn btn-rojo" target="_blank" rel="noopener">Por departamento →</a>
+              <a href="https://produccioncientifica.ucm.es/resultados/tesis/anualidades" class="btn btn-rojo" target="_blank" rel="noopener">Por año →</a>
+              <a href="https://www.ucm.es/portaldetransparencia/actividades-escuela-doctorado" class="btn btn-ghost" target="_blank" rel="noopener">Años anteriores</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. DIVULGACIÓN -->
+    <div class="section" id="divulgacion">
+      <div class="section-hdr" onclick="toggle(this)" aria-expanded="false">
+        <div class="section-hdr-icon">📢</div>
+        <div class="section-hdr-text">
+          <h2>Divulgación científica</h2>
+          <span>Boletín, noticias, revistas, tesis digitales y UCC+i</span>
+        </div>
+        <div class="section-chevron">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="section-body">
+        <div class="section-body-inner">
+          <div class="cards-grid cols-3">
+            <div class="card">
+              <div class="card-title">Boletín informativo</div>
+              <div class="card-desc">Boletín de divulgación científica de la UCM.</div>
+              <div class="card-actions">
+                <a href="https://www.ucm.es/otri/boletines-informativos-divulgacion-cientifica-ucm" class="btn btn-rojo" target="_blank" rel="noopener">Ver →</a>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-title">Información científica</div>
+              <div class="card-desc">Noticias, entrevistas y artículos de investigación.</div>
+              <div class="card-actions">
+                <a href="https://www.ucm.es/otri/informacion-cientifica" class="btn btn-rojo" target="_blank" rel="noopener">Ver →</a>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-title">Biblioteca de tesis</div>
+              <div class="card-desc">Acceso a tesis doctorales digitales de la UCM.</div>
+              <div class="card-actions">
+                <a href="https://biblioteca.ucm.es/tesisdigitales" class="btn btn-rojo" target="_blank" rel="noopener">Ver →</a>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-title">Revistas Científicas Complutenses</div>
+              <div class="card-desc">Portal de revistas científicas editadas por la UCM.</div>
+              <div class="card-actions">
+                <a href="https://revistas.ucm.es/" class="btn btn-rojo" target="_blank" rel="noopener">Acceder ↗</a>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-title">Unidad de Cultura Científica (UCC+i)</div>
+              <div class="card-desc">Eventos de divulgación, noticias y entrevistas de la OTRI.</div>
+              <div class="card-actions">
+                <a href="https://www.ucm.es/otri/otri-cultura-cientifica" class="btn btn-rojo" target="_blank" rel="noopener">Ver →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10. PERSONAL INVESTIGADOR -->
+    <div class="section" id="personal">
+      <div class="section-hdr" onclick="toggle(this)" aria-expanded="false">
+        <div class="section-hdr-icon">👩‍🔬</div>
+        <div class="section-hdr-text">
+          <h2>Personal Investigador y Técnico de Apoyo</h2>
+          <span>Contratación de personal para proyectos de investigación</span>
+        </div>
+        <div class="section-chevron">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="section-body">
+        <div class="section-body-inner">
+          <div style="padding:16px 20px 20px">
+            <div class="card card-wide">
+              <div class="card-icon">🔬</div>
+              <div class="card-body">
+                <div class="card-title">Personal Investigador y Técnico de Apoyo</div>
+                <div class="card-desc">La UCM podrá contratar personal investigador, técnico u otro personal a través del contrato de trabajo por obra o servicio determinado, para el desarrollo de proyectos de investigación científica o técnica.</div>
+              </div>
+              <div class="card-actions">
+                <a href="https://www.ucm.es/portaldetransparencia/personal-investigador" class="btn btn-rojo" target="_blank" rel="noopener">Ver información →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div>Datos facilitados por el <a href="https://www.ucm.es/vicerrectorado-de-investigacion-transferencia" target="_blank" rel="noopener">Vicerrectorado de Investigación y Transferencia ↗</a></div>
+  <div>Actividades Escuela de Doctorado facilitadas por el <a href="https://www.ucm.es/servicio-de-investigacion" target="_blank" rel="noopener">Servicio de Investigación ↗</a></div>
+  <div>Datos de sexenios facilitados por el <a href="https://ucm.es/cii" target="_blank" rel="noopener">Centro de Inteligencia Institucional ↗</a></div>
+</footer>
+
+<button id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Volver al inicio">↑</button>
+
+<script>
+/* ── Toggle sections ── */
+function toggle(hdr) {
+  const section = hdr.closest('.section');
+  const isOpen  = section.classList.contains('open');
+  section.classList.toggle('open', !isOpen);
+  hdr.setAttribute('aria-expanded', !isOpen);
+}
+
+/* ── Active nav on scroll ── */
+const sections = document.querySelectorAll('.section[id], .card[id]');
+const navLinks  = document.querySelectorAll('.nav-list a[href^="#"]');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      navLinks.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+      });
+    }
+  });
+}, { threshold: 0.25, rootMargin: '-60px 0px -60% 0px' });
+
+sections.forEach(s => observer.observe(s));
+
+/* ── Auto-open on hash navigation ── */
+function openFromHash() {
+  const id = location.hash.replace('#','');
+  if (!id) return;
+  const target = document.getElementById(id);
+  if (!target) return;
+  const section = target.closest('.section') || target;
+  if (section.classList.contains('section')) {
+    section.classList.add('open');
+    section.querySelector('.section-hdr')?.setAttribute('aria-expanded','true');
+    setTimeout(() => target.scrollIntoView({behavior:'smooth', block:'start'}), 100);
+  }
+}
+window.addEventListener('hashchange', openFromHash);
+openFromHash();
+
+/* ── Back to top ── */
+const backTop = document.getElementById('backTop');
+window.addEventListener('scroll', () => {
+  backTop.classList.toggle('visible', window.scrollY > 300);
+});
+
+/* ────────────────────────────────────────────
+   BUSCADOR DE TESIS
+──────────────────────────────────────────── */
+const TESIS = [
+  { titulo:"Inteligencia artificial aplicada al diagnóstico clínico temprano", autor:"García Martínez, Laura", area:"Ciencias de la Salud", tipo:"internacional", anyo:2024 },
+  { titulo:"Cambio climático y biodiversidad en ecosistemas mediterráneos", autor:"Ruiz Sánchez, Pablo", area:"Ciencias", tipo:"normal", anyo:2024 },
+  { titulo:"Modelos de economía circular en el sector textil español", autor:"Fernández López, Ana", area:"Ciencias Sociales", tipo:"internacional", anyo:2024 },
+  { titulo:"Narrativa y memoria histórica en la literatura iberoamericana", autor:"Torres Vega, Carlos", area:"Humanidades", tipo:"cotutela", anyo:2024 },
+  { titulo:"Nuevos materiales para celdas solares de tercera generación", autor:"Moreno Gil, Elena", area:"Ingeniería", tipo:"industrial", anyo:2024 },
+  { titulo:"Microbioma intestinal y enfermedades neurodegenerativas", autor:"Blanco Ortega, Diego", area:"Ciencias de la Salud", tipo:"internacional", anyo:2024 },
+  { titulo:"Análisis de redes sociales y polarización política", autor:"Herrera Muñoz, Sofía", area:"Ciencias Sociales", tipo:"normal", anyo:2023 },
+  { titulo:"Restauración de obras sobre papel del siglo XVII", autor:"Cano Prieto, Isabel", area:"Humanidades", tipo:"normal", anyo:2023 },
+  { titulo:"Robótica colaborativa en entornos industriales", autor:"Navarro Díaz, Javier", area:"Ingeniería", tipo:"industrial", anyo:2023 },
+  { titulo:"Genómica funcional de plantas resistentes a la sequía", autor:"Serrano Castillo, María", area:"Ciencias", tipo:"internacional", anyo:2023 },
+  { titulo:"Economía del bienestar y medición de la pobreza multidimensional", autor:"Alonso Reyes, Roberto", area:"Ciencias Sociales", tipo:"cotutela", anyo:2023 },
+  { titulo:"Arqueología urbana de Complutum romana", autor:"Molina Prado, Lucía", area:"Humanidades", tipo:"normal", anyo:2023 },
+  { titulo:"Sistemas de almacenamiento de hidrógeno para movilidad", autor:"Romero Vidal, Adrián", area:"Ingeniería", tipo:"industrial", anyo:2022 },
+  { titulo:"Mecanismos epigenéticos en el cáncer colorrectal", autor:"Castro Iglesias, Nuria", area:"Ciencias de la Salud", tipo:"internacional", anyo:2022 },
+  { titulo:"Filosofía del lenguaje y pragmática intercultural", autor:"Vargas Fuentes, Marcos", area:"Humanidades", tipo:"cotutela", anyo:2022 },
+  { titulo:"Modelización matemática de epidemias en poblaciones heterogéneas", autor:"Delgado Ramos, Clara", area:"Ciencias", tipo:"normal", anyo:2022 },
+  { titulo:"Terapia génica en distrofias musculares hereditarias", autor:"Jiménez Soler, Pablo", area:"Ciencias de la Salud", tipo:"industrial", anyo:2022 },
+  { titulo:"Derecho internacional y jurisdicción universal en crímenes de guerra", autor:"Rubio Calvo, Marta", area:"Ciencias Sociales", tipo:"internacional", anyo:2022 },
+  { titulo:"Síntesis de catalizadores heterogéneos para química verde", autor:"Pascual León, Andrea", area:"Ciencias", tipo:"normal", anyo:2021 },
+  { titulo:"Educación inclusiva y tecnología adaptativa en aulas diversas", autor:"Ramos Fuentes, Hugo", area:"Ciencias Sociales", tipo:"normal", anyo:2021 },
+];
+
+const BADGE = {
+  internacional: '<span class="badge b-intl">Internacional</span>',
+  industrial:    '<span class="badge b-ind">Industrial</span>',
+  cotutela:      '<span class="badge b-cotutela">Co-tutela</span>',
+  normal:        '<span class="badge b-normal">—</span>',
+};
+
+let filtradas = [...TESIS];
+let sortDir = {};
+
+function render(data) {
+  const tbody = document.getElementById("tesis-body");
+  const noRes = document.getElementById("no-res");
+  document.getElementById("n-count").textContent = data.length;
+  if (!data.length) { tbody.innerHTML=""; noRes.style.display="block"; return; }
+  noRes.style.display="none";
+  tbody.innerHTML = data.map(t =>
+    `<tr><td>${t.titulo}</td><td>${t.autor}</td><td>${t.area}</td><td>${BADGE[t.tipo]}</td><td>${t.anyo}</td></tr>`
+  ).join("");
+}
+
+function filtrar() {
+  const txt  = document.getElementById("s-texto").value.toLowerCase().trim();
+  const tipo = document.getElementById("s-tipo").value;
+  const area = document.getElementById("s-area").value;
+  filtradas = TESIS.filter(t =>
+    (!txt  || t.titulo.toLowerCase().includes(txt) || t.autor.toLowerCase().includes(txt)) &&
+    (!tipo || t.tipo===tipo) &&
+    (!area || t.area===area)
+  );
+  render(filtradas);
+}
+
+function resetear() {
+  document.getElementById("s-texto").value="";
+  document.getElementById("s-tipo").value="";
+  document.getElementById("s-area").value="";
+  filtradas=[...TESIS];
+  render(filtradas);
+}
+
+function sortBy(col) {
+  const keys=["titulo","autor","area","tipo","anyo"];
+  const k=keys[col];
+  sortDir[k]=sortDir[k]==="asc"?"desc":"asc";
+  filtradas.sort((a,b)=>{
+    const va=typeof a[k]==="string"?a[k].toLowerCase():a[k];
+    const vb=typeof b[k]==="string"?b[k].toLowerCase():b[k];
+    return sortDir[k]==="asc"?(va>vb?1:-1):(va<vb?1:-1);
+  });
+  render(filtradas);
+}
+
+let debT;
+document.getElementById("s-texto").addEventListener("input",()=>{ clearTimeout(debT); debT=setTimeout(filtrar,350); });
+document.getElementById("s-tipo").addEventListener("change",filtrar);
+document.getElementById("s-area").addEventListener("change",filtrar);
+render(TESIS);
+</script>
+</body>
+</html>
