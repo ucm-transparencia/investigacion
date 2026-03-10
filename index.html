@@ -9,8 +9,8 @@
 <style>
 /* ─── TOKENS ─────────────────────────────────────────────── */
 :root {
-  --ucm:    #b71234;
-  --ucm-d:  #8b0d27;
+  --ucm:    #9d2235;
+  --ucm-d:  #7a1a28;
   --ucm-l:  #f5e6ea;
   --ucm-ll: #fdf4f6;
   --gris:   #1c1c2e;
@@ -41,10 +41,10 @@ a { color:inherit; text-decoration:none }
 
 /* ─── HERO ───────────────────────────────────────────────── */
 .hero {
-  background: linear-gradient(135deg, #c41e3a 0%, #e8365d 100%);
+  background: linear-gradient(135deg, #9d2235 0%, #b82a40 100%);
   color: var(--blanco);
   padding: 18px 32px;
-  border-radius: 12px;
+  border-radius: 12px 12px 0 0;
   position: relative;
   overflow: hidden;
 }
@@ -111,7 +111,7 @@ a { color:inherit; text-decoration:none }
   box-shadow:var(--sh-s);
 }
 .sidebar-hdr {
-  background:linear-gradient(135deg,#d42b4f 0%,#e8365d 100%);
+  background:linear-gradient(135deg,#9d2235 0%,#b82a40 100%);
   color:var(--blanco);
   padding:12px 16px;
   font-size:.7rem;
@@ -330,7 +330,7 @@ a { color:inherit; text-decoration:none }
   white-space:nowrap;
 }
 .btn-rojo  { background:var(--ucm); color:var(--blanco) }
-.btn-rojo:hover  { background:var(--ucm-d); transform:translateY(-1px); box-shadow:0 3px 10px rgba(183,18,52,.3) }
+.btn-rojo:hover  { background:var(--ucm-d); transform:translateY(-1px); box-shadow:0 3px 10px rgba(157,34,53,.3) }
 .btn-verde { background:var(--verde); color:var(--blanco) }
 .btn-verde:hover { background:#14532d; transform:translateY(-1px); box-shadow:0 3px 10px rgba(22,101,52,.3) }
 .btn-ghost {
@@ -366,84 +366,82 @@ a { color:inherit; text-decoration:none }
 }
 .stat-label { font-size:.75rem; color:var(--gris-m); line-height:1.4 }
 
-/* ─── BUSCADOR TESIS ─────────────────────────────────────── */
-.search-wrap {
-  padding:0 20px 20px;
+/* ─── AÑOS ANTERIORES ACORDEÓN ───────────────────────────── */
+.anios-wrap {
+  padding:12px 20px 20px;
 }
-.search-box {
-  background:var(--gris-c);
+
+.anio-accordion {
   border:1px solid var(--gris-b);
   border-radius:10px;
-  padding:16px;
-  margin-bottom:12px;
+  overflow:hidden;
+  margin-bottom:8px;
 }
-.search-box h3 {
-  font-size:.78rem;
-  font-weight:700;
-  text-transform:uppercase;
-  letter-spacing:.08em;
-  color:var(--ucm);
-  margin-bottom:12px;
-  padding-bottom:8px;
-  border-bottom:1px solid var(--ucm-l);
-}
-.search-row { display:flex; flex-wrap:wrap; gap:8px; align-items:center }
-.search-row input,
-.search-row select {
-  padding:7px 11px;
-  border:1px solid var(--gris-b);
-  border-radius:6px;
-  font-size:.82rem;
-  font-family:var(--fn);
-  flex:1 1 150px;
-  min-width:130px;
-  background:var(--blanco);
-  color:var(--gris);
-  transition:border-color var(--dur);
-}
-.search-row input:focus,
-.search-row select:focus { outline:none; border-color:var(--ucm); box-shadow:0 0 0 3px var(--ucm-l) }
-
-.tesis-meta { font-size:.75rem; color:var(--gris-m); margin-bottom:8px }
-.tesis-meta span { font-weight:700; color:var(--ucm) }
-
-.table-wrap { overflow-x:auto }
-.tesis-table {
-  width:100%; border-collapse:collapse;
-  font-size:.8rem; background:var(--blanco);
-  border-radius:8px; overflow:hidden;
-  border:1px solid var(--gris-b);
-}
-.tesis-table thead th {
-  background:var(--ucm); color:var(--blanco);
-  padding:9px 12px; text-align:left;
-  font-size:.73rem; white-space:nowrap;
+.anio-hdr {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:11px 16px;
+  background:var(--gris-c);
+  cursor:pointer;
+  user-select:none;
+  font-size:.85rem;
   font-weight:600;
+  color:var(--gris);
+  transition:background var(--dur) var(--ease);
+  border:none;
+  width:100%;
+  text-align:left;
 }
-.tesis-table thead th.sortable { cursor:pointer; user-select:none }
-.tesis-table thead th.sortable:hover { background:var(--ucm-d) }
-.tesis-table tbody tr { border-bottom:1px solid var(--gris-b); transition:background var(--dur) }
-.tesis-table tbody tr:last-child { border-bottom:none }
-.tesis-table tbody tr:hover { background:var(--ucm-ll) }
-.tesis-table tbody td { padding:9px 12px; vertical-align:top }
-
-.badge {
-  display:inline-block; padding:2px 8px; border-radius:20px;
-  font-size:.68rem; font-weight:700; white-space:nowrap;
+.anio-hdr:hover { background:var(--ucm-ll) }
+.anio-accordion.open .anio-hdr { background:var(--ucm-ll); color:var(--ucm) }
+.anio-chevron {
+  transition:transform var(--dur) var(--ease);
+  color:var(--gris-m);
+  flex-shrink:0;
 }
-.b-intl     { background:#dcfce7; color:#166534 }
-.b-ind      { background:#dbeafe; color:#1e40af }
-.b-cotutela { background:#fef9c3; color:#854d0e }
-.b-normal   { background:var(--gris-c); color:var(--gris-m) }
+.anio-accordion.open .anio-chevron { transform:rotate(180deg) }
 
-.no-results {
-  text-align:center; padding:24px; color:var(--gris-m);
-  font-style:italic; font-size:.85rem;
-  background:var(--gris-c); border-radius:8px;
-  border:1px dashed var(--gris-b);
+.anio-body {
+  display:grid;
+  grid-template-rows:0fr;
+  transition:grid-template-rows .32s var(--ease);
+  background:var(--blanco);
 }
+.anio-accordion.open .anio-body { grid-template-rows:1fr }
+.anio-body-inner { overflow:hidden }
 
-.quick-links { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px }
+.anio-table {
+  width:100%; border-collapse:collapse;
+  font-size:.8rem;
+}
+.anio-table tr { border-bottom:1px solid var(--gris-b) }
+.anio-table tr:last-child { border-bottom:none }
+.anio-table td { padding:7px 16px; vertical-align:top }
+.anio-table td:first-child {
+  font-weight:700;
+  color:var(--ucm);
+  font-size:.9rem;
+  white-space:nowrap;
+  width:70px;
+}
+.anio-extras {
+  padding:6px 16px 12px;
+  font-size:.78rem;
+  color:var(--gris-m);
+  line-height:1.7;
+  border-top:1px dashed var(--gris-b);
+}
+.anio-extras p { margin-bottom:2px }
+.anio-extras strong { color:var(--gris) }
+
+/* ─── QUICK LINKS (doctorado) ────────────────────────────── */
+.doc-links {
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  padding:0 20px 20px;
+}
 
 /* ─── INFO RELACIONADA ───────────────────────────────────── */
 .info-rel {
@@ -461,18 +459,6 @@ a { color:inherit; text-decoration:none }
 .info-rel-grid { display:flex; flex-wrap:wrap; gap:10px }
 .info-rel-grid .card { flex:1; min-width:200px }
 
-/* ─── UNIVERSIDATA ───────────────────────────────────────── */
-.universidata {
-  background:linear-gradient(135deg,#e0f0ff 0%,#dbeafe 100%);
-  border:1px solid #bfdbfe;
-  border-radius:12px;
-  padding:18px 20px;
-  display:flex; align-items:center; gap:16px;
-  margin:0 20px 20px;
-}
-.universidata-icon { font-size:28px; flex-shrink:0 }
-.universidata p { font-size:.85rem; color:#1e40af; line-height:1.5; flex:1 }
-
 /* ─── FOOTER ─────────────────────────────────────────────── */
 .footer {
   background:var(--blanco);
@@ -482,7 +468,7 @@ a { color:inherit; text-decoration:none }
   display:flex; flex-direction:column; gap:6px;
   align-items:center; text-align:center; line-height:1.6;
 }
-.footer a { color:var(--ucm-d); text-decoration:underline; text-decoration-color:rgba(183,18,52,.25); transition:text-decoration-color var(--dur) }
+.footer a { color:var(--ucm-d); text-decoration:underline; text-decoration-color:rgba(157,34,53,.25); transition:text-decoration-color var(--dur) }
 .footer a:hover { text-decoration-color:var(--ucm) }
 
 /* ─── BACK TO TOP ────────────────────────────────────────── */
@@ -491,7 +477,7 @@ a { color:inherit; text-decoration:none }
   background:var(--ucm); color:var(--blanco);
   border:none; width:40px; height:40px;
   border-radius:50%; cursor:pointer; font-size:18px;
-  box-shadow:0 4px 16px rgba(183,18,52,.35);
+  box-shadow:0 4px 16px rgba(157,34,53,.35);
   display:flex; align-items:center; justify-content:center;
   transition:all var(--dur) var(--ease);
   opacity:0; pointer-events:none; z-index:100;
@@ -512,7 +498,6 @@ a { color:inherit; text-decoration:none }
 <header class="hero" id="inicio">
   <div class="hero-inner">
     <div class="hero-icon">
-      <!-- Microscopio SVG -->
       <svg width="28" height="28" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect x="18" y="3" width="10" height="5" rx="1.5" fill="white"/>
         <rect x="19.5" y="8" width="7" height="15" rx="1" fill="white"/>
@@ -840,7 +825,7 @@ a { color:inherit; text-decoration:none }
         <div class="section-hdr-icon">🎓</div>
         <div class="section-hdr-text">
           <h2>Actividades Escuela de Doctorado</h2>
-          <span>Cifras, tesis defendidas y buscador — Año 2024</span>
+          <span>Cifras y actividades — Año 2024 y años anteriores</span>
         </div>
         <div class="section-chevron">
           <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
@@ -849,7 +834,7 @@ a { color:inherit; text-decoration:none }
       <div class="section-body">
         <div class="section-body-inner">
 
-          <!-- Stats -->
+          <!-- Stats 2024 -->
           <div class="stat-grid">
             <div class="stat-card"><div class="stat-num">813</div><div class="stat-label">Tesis defendidas</div></div>
             <div class="stat-card"><div class="stat-num">213</div><div class="stat-label">Mención internacional</div></div>
@@ -862,55 +847,143 @@ a { color:inherit; text-decoration:none }
             <div class="stat-card"><div class="stat-num">6.253</div><div class="stat-label">Estudiantes matriculados 2023-2024</div></div>
           </div>
 
-          <!-- Buscador tesis -->
-          <div class="search-wrap">
-            <div class="search-box">
-              <h3>🔍 Buscador de tesis</h3>
-              <div class="search-row">
-                <input type="text" id="s-texto" placeholder="Título, autor/a…">
-                <select id="s-tipo">
-                  <option value="">Todos los tipos</option>
-                  <option value="internacional">Mención internacional</option>
-                  <option value="industrial">Doctorado industrial</option>
-                  <option value="cotutela">Co-tutela internacional</option>
-                  <option value="normal">Sin mención especial</option>
-                </select>
-                <select id="s-area">
-                  <option value="">Todas las áreas</option>
-                  <option value="Ciencias">Ciencias</option>
-                  <option value="Ciencias de la Salud">Ciencias de la Salud</option>
-                  <option value="Ciencias Sociales">Ciencias Sociales</option>
-                  <option value="Humanidades">Humanidades</option>
-                  <option value="Ingeniería">Ingeniería y Arquitectura</option>
-                </select>
-                <button class="btn btn-rojo" onclick="filtrar()">Buscar</button>
-                <button class="btn btn-ghost" onclick="resetear()">Limpiar</button>
+          <!-- Actividades adicionales 2024 -->
+          <div style="margin:4px 20px 16px; background:var(--ucm-ll); border:1px solid var(--ucm-l); border-radius:10px; padding:12px 16px; font-size:.8rem; color:var(--gris); line-height:1.8;">
+            <div style="font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--ucm); margin-bottom:8px;">Actividades destacadas 2024</div>
+            ❉ 8ª Convocatoria EDUCM PhDay Complutense<br>
+            ❉ 4ª Convocatoria Ayudas movilidad estudiantes <span style="color:var(--gris-m)">(325 solicitudes recibidas, 158 ayudas concedidas)</span><br>
+            ❉ 8ª edición Tesis en 3 minutos <span style="color:var(--gris-m)">(54 participantes)</span><br>
+            ❉ Participación en la 4ª edición del Concurso #Hilotesis<br>
+            ❉ <strong>UNA Europa</strong>: inicio del programa <em>Cultural Heritage</em> <span style="color:var(--gris-m)">(se han firmado 3 convenios de cotutela de tesis doctoral en el marco del proyecto)</span>
+          </div>
+
+          <!-- Links principales -->
+          <div class="doc-links">
+            <a href="https://produccioncientifica.ucm.es/resultados/tesis/unidades" class="btn btn-rojo" target="_blank" rel="noopener">Por departamento →</a>
+            <a href="https://produccioncientifica.ucm.es/resultados/tesis/anualidades" class="btn btn-rojo" target="_blank" rel="noopener">Por año →</a>
+          </div>
+
+          <!-- Acordeón años anteriores -->
+          <div class="anios-wrap">
+            <div style="font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--gris-m); margin-bottom:10px; padding-bottom:6px; border-bottom:1px solid var(--gris-b);">Años anteriores</div>
+
+            <!-- 2023 -->
+            <div class="anio-accordion" id="anio-2023">
+              <button class="anio-hdr" onclick="toggleAnio('anio-2023')">
+                <span>Ejercicio 2023</span>
+                <svg class="anio-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+              </button>
+              <div class="anio-body">
+                <div class="anio-body-inner">
+                  <table class="anio-table">
+                    <tr><td>27</td><td>Convenios de co-tutela</td></tr>
+                    <tr><td>12</td><td>Solicitudes mención doctorado industrial</td></tr>
+                    <tr><td>63</td><td>Actividades formativas transversales (1.746 inscritos)</td></tr>
+                    <tr><td>47</td><td>Declaraciones de equivalencia de titulaciones extranjeras a título de doctor</td></tr>
+                    <tr><td>825</td><td>Tesis defendidas</td></tr>
+                    <tr><td>205</td><td>Tesis con Mención Internacional</td></tr>
+                    <tr><td>16</td><td>Tesis con Mención Doctorado Industrial</td></tr>
+                    <tr><td>11</td><td>Co-tutela internacional</td></tr>
+                  </table>
+                  <div class="anio-extras">
+                    <p>❉ 7ª Convocatoria EDUCM PhDay Complutense</p>
+                    <p>❉ 3ª Convocatoria Ayudas movilidad estudiantes <strong>(240 solicitudes recibidas, 163 ayudas concedidas)</strong></p>
+                    <p>❉ 7ª Edición Tesis en 3 minutos <strong>(57 participantes)</strong></p>
+                    <p>❉ Participación en la Escuela de Verano Complutense</p>
+                    <p>❉ Participación en la 3ª edición del Concurso #Hilotesis</p>
+                    <p>❉ <strong>UNA Europa</strong>: inicio del programa <em>Cultural Heritage</em> (se han firmado 4 convenios de cotutela de tesis doctoral en el marco del proyecto)</p>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div class="tesis-meta">Mostrando <span id="n-count">20</span> tesis</div>
-            <div class="table-wrap">
-              <table class="tesis-table">
-                <thead>
-                  <tr>
-                    <th class="sortable" onclick="sortBy(0)">Título ⇅</th>
-                    <th class="sortable" onclick="sortBy(1)">Autor/a ⇅</th>
-                    <th class="sortable" onclick="sortBy(2)">Área ⇅</th>
-                    <th>Tipo</th>
-                    <th class="sortable" onclick="sortBy(4)">Año ⇅</th>
-                  </tr>
-                </thead>
-                <tbody id="tesis-body"></tbody>
-              </table>
-              <div class="no-results" id="no-res" style="display:none">No se encontraron tesis con esos criterios.</div>
+            <!-- 2022 -->
+            <div class="anio-accordion" id="anio-2022">
+              <button class="anio-hdr" onclick="toggleAnio('anio-2022')">
+                <span>Ejercicio 2022</span>
+                <svg class="anio-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+              </button>
+              <div class="anio-body">
+                <div class="anio-body-inner">
+                  <table class="anio-table">
+                    <tr><td>25</td><td>Convenios de co-tutela</td></tr>
+                    <tr><td>19</td><td>Solicitudes mención doctorado industrial</td></tr>
+                    <tr><td>56</td><td>Actividades formativas transversales (1.379 inscritos)</td></tr>
+                    <tr><td>41</td><td>Declaraciones de equivalencia de titulaciones extranjeras a título de doctor</td></tr>
+                    <tr><td>652</td><td>Tesis defendidas</td></tr>
+                    <tr><td>149</td><td>Tesis con Mención Internacional</td></tr>
+                    <tr><td>5</td><td>Tesis con Mención Doctorado Industrial</td></tr>
+                    <tr><td>8</td><td>Co-tutela internacional</td></tr>
+                  </table>
+                  <div class="anio-extras">
+                    <p>❉ 6ª Convocatoria EDUCM PhDay Complutense</p>
+                    <p>❉ 2ª Convocatoria Ayudas movilidad estudiantes <strong>(227 solicitudes recibidas, 132 ayudas concedidas)</strong></p>
+                    <p>❉ 6ª Edición Tesis en 3 minutos <strong>(61 participantes)</strong></p>
+                    <p>❉ Participación en la Escuela de Verano Complutense</p>
+                    <p>❉ Participación en la 2ª edición del Concurso #Hilotesis</p>
+                    <p>❉ <strong>UNA Europa</strong>: inicio del programa <em>Cultural Heritage</em> (se han firmado 6 convenios de cotutela de tesis doctoral en el marco del proyecto)</p>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div class="quick-links">
-              <a href="https://produccioncientifica.ucm.es/resultados/tesis/unidades" class="btn btn-rojo" target="_blank" rel="noopener">Por departamento →</a>
-              <a href="https://produccioncientifica.ucm.es/resultados/tesis/anualidades" class="btn btn-rojo" target="_blank" rel="noopener">Por año →</a>
-              <a href="https://www.ucm.es/portaldetransparencia/actividades-escuela-doctorado" class="btn btn-ghost" target="_blank" rel="noopener">Años anteriores</a>
+            <!-- 2021 -->
+            <div class="anio-accordion" id="anio-2021">
+              <button class="anio-hdr" onclick="toggleAnio('anio-2021')">
+                <span>Ejercicio 2021</span>
+                <svg class="anio-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+              </button>
+              <div class="anio-body">
+                <div class="anio-body-inner">
+                  <table class="anio-table">
+                    <tr><td>18</td><td>Convenios de co-tutela</td></tr>
+                    <tr><td>10</td><td>Solicitudes mención doctorado industrial</td></tr>
+                    <tr><td>51</td><td>Actividades formativas transversales</td></tr>
+                    <tr><td>35</td><td>Declaraciones de equivalencia de titulaciones extranjeras a título de doctor</td></tr>
+                    <tr><td>718</td><td>Tesis defendidas</td></tr>
+                    <tr><td>178</td><td>Tesis con Mención Internacional</td></tr>
+                    <tr><td>9</td><td>Tesis con Mención Doctorado Industrial</td></tr>
+                    <tr><td>7</td><td>Co-tutela internacional</td></tr>
+                  </table>
+                  <div class="anio-extras">
+                    <p>❉ 5ª Convocatoria EDUCM PhDay Complutense</p>
+                    <p>❉ 1ª Convocatoria Ayudas movilidad estudiantes</p>
+                    <p>❉ 5ª Edición Tesis en 3 minutos</p>
+                    <p>❉ Participación en la 1ª edición del Concurso #Hilotesis</p>
+                  </div>
+                </div>
+              </div>
             </div>
+
+            <!-- 2020 -->
+            <div class="anio-accordion" id="anio-2020">
+              <button class="anio-hdr" onclick="toggleAnio('anio-2020')">
+                <span>Ejercicio 2020</span>
+                <svg class="anio-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+              </button>
+              <div class="anio-body">
+                <div class="anio-body-inner">
+                  <table class="anio-table">
+                    <tr><td>14</td><td>Convenios de co-tutela</td></tr>
+                    <tr><td>8</td><td>Solicitudes mención doctorado industrial</td></tr>
+                    <tr><td>44</td><td>Actividades formativas transversales</td></tr>
+                    <tr><td>29</td><td>Declaraciones de equivalencia de titulaciones extranjeras a título de doctor</td></tr>
+                    <tr><td>680</td><td>Tesis defendidas</td></tr>
+                    <tr><td>160</td><td>Tesis con Mención Internacional</td></tr>
+                    <tr><td>6</td><td>Tesis con Mención Doctorado Industrial</td></tr>
+                    <tr><td>6</td><td>Co-tutela internacional</td></tr>
+                  </table>
+                  <div class="anio-extras">
+                    <p>❉ 4ª Convocatoria EDUCM PhDay Complutense</p>
+                    <p>❉ 4ª Edición Tesis en 3 minutos</p>
+                    <p>Para más información consulta la <a href="https://www.ucm.es/portaldetransparencia/actividades-escuela-doctorado" target="_blank" rel="noopener" style="color:var(--ucm);text-decoration:underline">página oficial del Portal de Transparencia ↗</a></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
+          <!-- fin acordeón años -->
 
         </div>
       </div>
@@ -1005,9 +1078,8 @@ a { color:inherit; text-decoration:none }
 </div>
 
 <!-- FOOTER -->
-<!-- FOOTER -->
 <footer class="footer">
-  <div>Datos facilitados por el <a href="https://www.ucm.es/investigar" target="_blank" rel="noopener">Servicio de Investigación ↗</a></div>
+  <div>Datos facilitados y extraídos del <a href="https://www.ucm.es/investigar" target="_blank" rel="noopener">Servicio de Investigación ↗</a></div>
   <div>Datos de sexenios facilitados por el <a href="https://ucm.es/cii" target="_blank" rel="noopener">Centro de Inteligencia Institucional ↗</a></div>
 </footer>
 
@@ -1020,6 +1092,12 @@ function toggle(hdr) {
   const isOpen  = section.classList.contains('open');
   section.classList.toggle('open', !isOpen);
   hdr.setAttribute('aria-expanded', !isOpen);
+}
+
+/* ── Toggle años acordeón ── */
+function toggleAnio(id) {
+  const el = document.getElementById(id);
+  el.classList.toggle('open');
 }
 
 /* ── Active nav on scroll ── */
@@ -1060,91 +1138,6 @@ const backTop = document.getElementById('backTop');
 window.addEventListener('scroll', () => {
   backTop.classList.toggle('visible', window.scrollY > 300);
 });
-
-/* ────────────────────────────────────────────
-   BUSCADOR DE TESIS
-──────────────────────────────────────────── */
-const TESIS = [
-  { titulo:"Inteligencia artificial aplicada al diagnóstico clínico temprano", autor:"García Martínez, Laura", area:"Ciencias de la Salud", tipo:"internacional", anyo:2024 },
-  { titulo:"Cambio climático y biodiversidad en ecosistemas mediterráneos", autor:"Ruiz Sánchez, Pablo", area:"Ciencias", tipo:"normal", anyo:2024 },
-  { titulo:"Modelos de economía circular en el sector textil español", autor:"Fernández López, Ana", area:"Ciencias Sociales", tipo:"internacional", anyo:2024 },
-  { titulo:"Narrativa y memoria histórica en la literatura iberoamericana", autor:"Torres Vega, Carlos", area:"Humanidades", tipo:"cotutela", anyo:2024 },
-  { titulo:"Nuevos materiales para celdas solares de tercera generación", autor:"Moreno Gil, Elena", area:"Ingeniería", tipo:"industrial", anyo:2024 },
-  { titulo:"Microbioma intestinal y enfermedades neurodegenerativas", autor:"Blanco Ortega, Diego", area:"Ciencias de la Salud", tipo:"internacional", anyo:2024 },
-  { titulo:"Análisis de redes sociales y polarización política", autor:"Herrera Muñoz, Sofía", area:"Ciencias Sociales", tipo:"normal", anyo:2023 },
-  { titulo:"Restauración de obras sobre papel del siglo XVII", autor:"Cano Prieto, Isabel", area:"Humanidades", tipo:"normal", anyo:2023 },
-  { titulo:"Robótica colaborativa en entornos industriales", autor:"Navarro Díaz, Javier", area:"Ingeniería", tipo:"industrial", anyo:2023 },
-  { titulo:"Genómica funcional de plantas resistentes a la sequía", autor:"Serrano Castillo, María", area:"Ciencias", tipo:"internacional", anyo:2023 },
-  { titulo:"Economía del bienestar y medición de la pobreza multidimensional", autor:"Alonso Reyes, Roberto", area:"Ciencias Sociales", tipo:"cotutela", anyo:2023 },
-  { titulo:"Arqueología urbana de Complutum romana", autor:"Molina Prado, Lucía", area:"Humanidades", tipo:"normal", anyo:2023 },
-  { titulo:"Sistemas de almacenamiento de hidrógeno para movilidad", autor:"Romero Vidal, Adrián", area:"Ingeniería", tipo:"industrial", anyo:2022 },
-  { titulo:"Mecanismos epigenéticos en el cáncer colorrectal", autor:"Castro Iglesias, Nuria", area:"Ciencias de la Salud", tipo:"internacional", anyo:2022 },
-  { titulo:"Filosofía del lenguaje y pragmática intercultural", autor:"Vargas Fuentes, Marcos", area:"Humanidades", tipo:"cotutela", anyo:2022 },
-  { titulo:"Modelización matemática de epidemias en poblaciones heterogéneas", autor:"Delgado Ramos, Clara", area:"Ciencias", tipo:"normal", anyo:2022 },
-  { titulo:"Terapia génica en distrofias musculares hereditarias", autor:"Jiménez Soler, Pablo", area:"Ciencias de la Salud", tipo:"industrial", anyo:2022 },
-  { titulo:"Derecho internacional y jurisdicción universal en crímenes de guerra", autor:"Rubio Calvo, Marta", area:"Ciencias Sociales", tipo:"internacional", anyo:2022 },
-  { titulo:"Síntesis de catalizadores heterogéneos para química verde", autor:"Pascual León, Andrea", area:"Ciencias", tipo:"normal", anyo:2021 },
-  { titulo:"Educación inclusiva y tecnología adaptativa en aulas diversas", autor:"Ramos Fuentes, Hugo", area:"Ciencias Sociales", tipo:"normal", anyo:2021 },
-];
-
-const BADGE = {
-  internacional: '<span class="badge b-intl">Internacional</span>',
-  industrial:    '<span class="badge b-ind">Industrial</span>',
-  cotutela:      '<span class="badge b-cotutela">Co-tutela</span>',
-  normal:        '<span class="badge b-normal">—</span>',
-};
-
-let filtradas = [...TESIS];
-let sortDir = {};
-
-function render(data) {
-  const tbody = document.getElementById("tesis-body");
-  const noRes = document.getElementById("no-res");
-  document.getElementById("n-count").textContent = data.length;
-  if (!data.length) { tbody.innerHTML=""; noRes.style.display="block"; return; }
-  noRes.style.display="none";
-  tbody.innerHTML = data.map(t =>
-    `<tr><td>${t.titulo}</td><td>${t.autor}</td><td>${t.area}</td><td>${BADGE[t.tipo]}</td><td>${t.anyo}</td></tr>`
-  ).join("");
-}
-
-function filtrar() {
-  const txt  = document.getElementById("s-texto").value.toLowerCase().trim();
-  const tipo = document.getElementById("s-tipo").value;
-  const area = document.getElementById("s-area").value;
-  filtradas = TESIS.filter(t =>
-    (!txt  || t.titulo.toLowerCase().includes(txt) || t.autor.toLowerCase().includes(txt)) &&
-    (!tipo || t.tipo===tipo) &&
-    (!area || t.area===area)
-  );
-  render(filtradas);
-}
-
-function resetear() {
-  document.getElementById("s-texto").value="";
-  document.getElementById("s-tipo").value="";
-  document.getElementById("s-area").value="";
-  filtradas=[...TESIS];
-  render(filtradas);
-}
-
-function sortBy(col) {
-  const keys=["titulo","autor","area","tipo","anyo"];
-  const k=keys[col];
-  sortDir[k]=sortDir[k]==="asc"?"desc":"asc";
-  filtradas.sort((a,b)=>{
-    const va=typeof a[k]==="string"?a[k].toLowerCase():a[k];
-    const vb=typeof b[k]==="string"?b[k].toLowerCase():b[k];
-    return sortDir[k]==="asc"?(va>vb?1:-1):(va<vb?1:-1);
-  });
-  render(filtradas);
-}
-
-let debT;
-document.getElementById("s-texto").addEventListener("input",()=>{ clearTimeout(debT); debT=setTimeout(filtrar,350); });
-document.getElementById("s-tipo").addEventListener("change",filtrar);
-document.getElementById("s-area").addEventListener("change",filtrar);
-render(TESIS);
 </script>
 </body>
 </html>
